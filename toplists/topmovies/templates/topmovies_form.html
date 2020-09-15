@@ -1,0 +1,18 @@
+{% extends "topmovies_base.html" %}
+
+{% block body %}
+    <div style="width: 30%; margin: auto;">
+        <form id="response" action="" method="post">
+            {% csrf_token %}
+            {% for x in form %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{x.name}}</label>
+                    {{ x }}
+                </div>
+            {% endfor %}
+            <div style="width: 10%; margin: auto;">
+                <button type="submit" class="btn btn-primary">{{purpose}}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

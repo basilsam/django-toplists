@@ -1,0 +1,25 @@
+{% extends "topmovies_base.html" %}
+
+{% block body %}
+    {% if list_size == 0 %}
+        <div>
+            <h2> Your list is empty...</h2>
+        </div>
+    {% endif %}
+    {% for movie in list.movies %}
+        <div class="movie-card" id="{{movie.id}}">
+            <div class="movie-header" style="background: url({{"https://image.tmdb.org/t/p/w500"|add:movie.poster_path}}) no-repeat; background-size: cover;">
+                <div class="header-icon-container">
+                        <a href="javascript:deleteMovie('{{movie.id}}')">
+                            <i class="material-icons header-icon">-</i>
+                        </a>
+                </div>
+            </div>
+            <div class="movie-content">
+                <div class="movie-content-header">
+                    <h2 class="movie-title">{{movie.title}}</h2>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

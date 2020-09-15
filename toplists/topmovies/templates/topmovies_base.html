@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Top Movies</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <script src="{% static "/topmovies.js" %}"></script>
+  <link rel="stylesheet" href="{% static "/topmovies.css" %}">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'my-list' %}">My List</a></li>
+      <li><a href="{% url 'popular-movies' %}">Popular</a></li>
+      <li><a href="{% url 'top-rated' %}">Top-rated</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if logged_in %}
+        <li><a href="{% url 'account' %}"><span class="glyphicon glyphicon-user"></span> Account </a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+      {% else %}
+        <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+      {% endif %}
+    </ul>
+  </div>
+    <form action="{% url 'search' %}">
+      <input class="form-control"  type="text" placeholder="Search.." name="title">
+    </form>
+</nav>
+
+  {% block body %}
+  {% endblock %}
+
+</body>
+</html>

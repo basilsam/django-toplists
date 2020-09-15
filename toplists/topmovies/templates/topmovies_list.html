@@ -1,0 +1,28 @@
+{% extends "topmovies_base.html" %}
+
+{% block body %}
+    {% for movie in list.movies %}
+        <div class="movie-card">
+            <div class="movie-header" style="background: url({{"https://image.tmdb.org/t/p/w500"|add:movie.poster_path}}) no-repeat; background-size: cover;">
+                <div class="header-icon-container">
+                    {% if logged_in %}
+                        <a href="javascript:addMovie('{{movie.id}}')">
+                            <i class="material-icons header-icon">+</i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="movie-content">
+                <div class="movie-content-header">
+                    <h2 class="movie-title">{{movie.title}}</h2>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div id="outer">
+        <div class="inner"><button class="btn btn-primary btn-block" onclick='decrement()'>Previous Page</button></div>
+        <div class="inner"><button class="btn btn-primary btn-block" onclick='increment()'>Next Page</button></div>
+    </div>
+    <br>
+{% endblock %}
